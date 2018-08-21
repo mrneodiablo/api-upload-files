@@ -109,5 +109,5 @@ FILE_SIZE = 1024*1024 # 1 MB
 
 ## Test API
  
- [Detail for test](script_test/readme_test.MD)
+ [Detail for test](script_test/readme_test.md)
  

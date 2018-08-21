@@ -1,0 +1,27 @@
+sdasd
+asd
+asd
+asd
+a
+sd
+asd
+
+asd# TOOL uppatch local
+	10.17.21.15:8888 DC SING
+    restart tool: /etc/init.d/gunicorn restart
+
+# API UPPACTH
+   172.31.0.63: 9090 AWS
+   
+   stop: ps aux | grep python
+	   kill process gunicorn
+   
+   start: /build/python2.7/bin/python2.7 /build/python2.7/bin/supervisord -c /etc/supervisord.conf
+     start service supervisord là service monitor process auto check start process
+
+
+# API get CCU
+  172.31.5.221
+  restart tool: /etc/init.d/gunicorn restart
+       
+dd

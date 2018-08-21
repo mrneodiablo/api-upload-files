@@ -1,0 +1,30 @@
+version: '2.1'
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=dongvt
+      - MYSQL_PASSWORD=dongvt
+      - MYSQL_DATABASE=file_upload
+    healthcheck:
+      test: mysqladmin -uroot -proot ping
+      interval: 2s
+      timeout: 5s
+      retries: 30
+  app:
+    build: .
+    image: app_api_upload:v1
+    container_name: 'app_v1'
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      - APP_DATABASE_HOST=mysql
+      - APP_DATABASE_PORT=3306
+      - APP_DATABASE_USER=dongvt
+      - APP_DATABASE_PASS=dongvt
+      - APP_DATABASE_NAME=file_upload
+    ports:
+      - '1234:80'

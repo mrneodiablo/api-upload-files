@@ -1,10 +1,11 @@
 ## INSTALL
 There are  3 options to install app
-  - manual
+  - manual with Centos 6/7
+  - manual with NixOS
   - docker
   - docker-compose
 
-### Install manual
+### Install with Centos 6/7
    
 requitment:
    - OS          Centos 6.8/7
@@ -174,6 +175,32 @@ show
 =========== respone ===========
 {"response_message":"file not found ","respone_code":-404,"response_data":"case1.txt"}
 ```
+
+
+### Install wil NixOS
+
+requitment:
+   - OS: NixOS 6.8/7
+
+To install `http-api-upload` in NixOS very easy:
+
+1. Install git command on NixOS
+```
+[root@nixos:~]nix-env -i git
+warning: there are multiple derivations named 'git-2.16.4'; using the first one
+replacing old 'git-2.16.4'
+installing 'git-2.16.4'
+```
+
+
+clone code from repository:
+`mkdir /project/`
+
+```
+cd /project
+git clone https://github.com/dongvothanh/http-api-upload.git
+```
+
 
 ### Install with docker file
 

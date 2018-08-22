@@ -99,11 +99,13 @@ FILE_SIZE = 1024*1024 # 1 MB
 * Logs of app service at: `/data/uploadfile/logs`
 * File will be save on dir: `/data/uploadfile/resource_upload`
 
-## Install Server
 
-- install manual
-- install by docker file
-- install by docker compose
+## Setting up
+
+- install manual with CentOS 6/7
+- install manual with NixOs
+- install by Dockerfile
+- install by docker-compose
 
  [Detail for setup](setup/readme_setup.MD)
 

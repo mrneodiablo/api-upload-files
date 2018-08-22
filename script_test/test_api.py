@@ -3,6 +3,7 @@ import base64
 import hashlib
 import requests
 import json
+import os
 
 URL = "http://172.16.227.150:1234/api/v1/file/"
 
@@ -70,17 +71,19 @@ def delete_file(file_name):
 
 
 if __name__ == '__main__':
+
+    dir_file = os.getcwd()
     print "==== upload file case7.pdf"
-    upload_file('datatest/case7.pdf')
+    upload_file(dir_file + '/datatest/case7.pdf')
 
     print "\n\n"
     print "==== upload file case9.csv"
-    upload_file('datatest/case9.csv')
+    upload_file(dir_file + '/datatest/case9.csv')
 
 
     print "\n\n"
     print "==== delete file case9.csv"
-    delete_file("case9.csv")
+    delete_file(dir_file + "/case9.csv")
 
     print "\n\n"
     print "==== delete file asd.dd"

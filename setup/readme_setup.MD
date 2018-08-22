@@ -182,7 +182,7 @@ show
 =====
 
 requitment:
-   - OS: NixOS 6.8/7
+   - OS: NixOS
 
 To install `http-api-upload` in NixOS very easy:
 

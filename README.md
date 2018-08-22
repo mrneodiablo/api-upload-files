@@ -100,7 +100,7 @@ FILE_SIZE = 1024*1024 # 1 MB
 * File will be save on dir: `/data/uploadfile/resource_upload`
 
 
-## Setting up
+## Setup
 
 - install manual with CentOS 6/7
 - install manual with NixOs

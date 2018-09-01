@@ -178,10 +178,10 @@ show
 ```
 
 
-### Install wil NixOS
+### Install will NixOS
 =====
 
-requitment:
+requitments:
    - OS: NixOS
 
 To install `http-api-upload` in NixOS very easy:
@@ -222,8 +222,7 @@ Resolving deltas: 100% (9/9), done.
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      /project/http-api-upload/setup/nixos/mysql.nix
-      /project/http-api-upload/setup/nixos/http-api-upload.nix
+      /project/http-api-upload/setup/nixos/http-api-upload/app.nix
     ];
 
   # Use the GRUB 2 boot loader.
@@ -237,6 +236,26 @@ Resolving deltas: 100% (9/9), done.
 
   # networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+
+  # Configuration http-api-upload======
+
+  ## Config mysql
+  services.mysql.enable = true;
+  services.mysql.package = pkgs.mysql;
+  services.mysql.dataDir = "/var/db";
+  services.mysql.bind = "127.0.0.1";
+  services.mysql.initialDatabases = [{ name = "file_upload"; }];
+  systemd.services.mysql.serviceConfig.Restart = "on-failure";
+  systemd.services.mysql.serviceConfig.RestartSec = "10s";
+
+  ## Config app
+  services.http-api-upload.enable = true;
+  services.http-api-upload.port = "8080";
+  services.http-api-upload.process = "4";
+  services.http-api-upload.threads = "2";
+  services.http-api-upload.project_dir = "/project/http-api-upload";
+  # End configuration app =============
+
 
   # Select internationalisation properties.
   # i18n = {
@@ -257,9 +276,33 @@ Resolving deltas: 100% (9/9), done.
 
 notice:
 ```
-/project/http-api-upload/setup/nixos/mysql.nix
-/project/http-api-upload/setup/nixos/http-api-upload.nix
+  imports =
+    [ # Include the results of the hardware scan.
+      ./hardware-configuration.nix
+      /project/http-api-upload/setup/nixos/http-api-upload/app.nix
+    ];
 ```
+
+and
+```
+ ## Config mysql
+services.mysql.enable = true;
+services.mysql.package = pkgs.mysql;
+services.mysql.dataDir = "/var/db";
+services.mysql.bind = "127.0.0.1";
+services.mysql.initialDatabases = [{ name = "file_upload"; }];
+systemd.services.mysql.serviceConfig.Restart = "on-failure";
+systemd.services.mysql.serviceConfig.RestartSec = "10s";
+
+## Config app
+services.http-api-upload.enable = true;
+services.http-api-upload.port = "8080";
+services.http-api-upload.process = "4";
+services.http-api-upload.threads = "2";
+services.http-api-upload.project_dir = "/project/http-api-upload";
+# End configuration app =============
+```
+
 
 These are 2 scripts in project we will put its into `/etc/nixos/configuration.nix` to install and start automatic
 

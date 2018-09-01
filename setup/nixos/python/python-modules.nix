@@ -1,4 +1,4 @@
-{ pkgs, buildPythonPackage }:
+{ pkgs }:
 
 rec {
 
@@ -6,7 +6,6 @@ rec {
 
     buildInputs = [ pkgs.libiconv ];
 
-    # outputs = [ "dev" "out" ]; FIXME: cmake variables don't allow that < 3.0
     cmakeFlags = [
       "-DWITH_EXTERNAL_ZLIB=ON"
       "-DMYSQL_UNIX_ADDR=/run/mysqld/mysqld.sock"];
@@ -42,7 +41,7 @@ rec {
   };
 
 
-  django = buildPythonPackage rec {
+  django = pkgs.python27Packages.buildPythonPackage rec {
 
     doCheck = false;
     name = "Django-${version}";
@@ -56,7 +55,7 @@ rec {
   };
 
 
-  django-docs = buildPythonPackage rec {
+  django-docs = pkgs.python27Packages.buildPythonPackage rec {
 
     doCheck = false;
     name = "django-docs-${version}";
@@ -70,7 +69,7 @@ rec {
   };
 
 
-  django-filter = buildPythonPackage rec {
+  django-filter = pkgs.python27Packages.buildPythonPackage rec {
 
     doCheck = false;
     name = "django-filter-${version}";
@@ -82,7 +81,7 @@ rec {
 
   };
 
-  djangorestframework = buildPythonPackage rec {
+  djangorestframework = pkgs.python27Packages.buildPythonPackage rec {
 
     doCheck = false;
     name = "djangorestframework-${version}";
@@ -96,14 +95,14 @@ rec {
 
 
 
-  MySQL-python = buildPythonPackage rec {
+  MySQL-python = pkgs.python27Packages.buildPythonPackage rec {
 
     buildInputs = [ connector-c ];
     doCheck = false;
-    name = "MySQL-python-${version}";
+    name = "mysql-python-${version}";
     src = pkgs.fetchurl{
       sha256 = "811040b647e5d5686f84db415efd697e6250008b112b6909ba77ac059e140c74";
-      url = "https://files.pythonhosted.org/packages/a5/e9/51b544da85a36a68debe7a7091f068d802fc515a3a202652828c73453cad/MySQL-python-${version}.zip";
+      url = "https://files.pythonhosted.org/packages/a5/e9/51b544da85a36a68debe7a7091f068d802fc515a3a202652828c73453cad/mysql-python-${version}.zip";
     };
     version = "1.2.5";
 
@@ -111,7 +110,7 @@ rec {
 
 
 
-  requests = buildPythonPackage rec {
+  requests = pkgs.python27Packages.buildPythonPackage rec {
 
     doCheck = false;
     name = "requests-${version}";
@@ -127,7 +126,7 @@ rec {
   };
 
 
-  SQLAlchemy = buildPythonPackage rec {
+  SQLAlchemy = pkgs.python27Packages.buildPythonPackage rec {
 
     doCheck = false;
     name = "SQLAlchemy-${version}";
@@ -139,7 +138,7 @@ rec {
 
   };
 
-  uwsgi = buildPythonPackage rec {
+  uwsgi = pkgs.python27Packages.buildPythonPackage rec {
 
     doCheck = false;
     name = "uwsgi-${version}";

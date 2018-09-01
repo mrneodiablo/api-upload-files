@@ -91,13 +91,39 @@ FILE_SIZE = 1024*1024 # 1 MB
 
 ### Use HTTP REST API
 
-- POST   : upload file
-- GET    : retrieve file by name
-- DELETE : delete file by name
-- PUT    : update file by name
 
-* Logs of app service at: `/data/uploadfile/logs`
-* File will be save on dir: `/data/uploadfile/resource_upload`
+```
+GET FILE
+```
+
+* end point: `http://xxx/api/v1/file/<filename>`
+* method: GET
+* authentication: header
+
+```
+UPLOAD FILE
+```
+
+* end point: `http://xxx/api/v1/file/`
+* method: POST
+* authentication: header
+
+```
+UPDATE FILE
+```
+
+* end point: `http://xxx/api/v1/file/<filename>`
+* method: PUT
+* authentication: header
+
+
+```
+DELETE FILE
+```
+
+* end point: `http://xxx/api/v1/file/<filename>`
+* method: DELETE
+* authentication: header
 
 
 ## Setup

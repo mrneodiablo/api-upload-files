@@ -54,27 +54,27 @@ with lib;
       app-database-name = mkOption {
         type = types.str;
         default = "file_upload";
-        description = "secret key for application verify to client";
+        description = "database name for app connect";
       };
       app-database-user = mkOption {
         type = types.str;
         default = "root";
-        description = "secret key for application verify to client";
+        description = "database username for app connect";
       };
       app-database-pass = mkOption {
         type = types.str;
         default = "";
-        description = "secret key for application verify to client";
+        description = "database password for app connect";
       };
       app-database-host = mkOption {
         type = types.str;
         default = "127.0.0.1";
-        description = "secret key for application verify to client";
+        description = "database host for app connect";
       };
       app-database-port = mkOption {
         type = types.str;
         default = "3306";
-        description = "secret key for application verify to client";
+        description = "database port for app connect";
       };
       waiting-time = mkOption {
         type = types.str;

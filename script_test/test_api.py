@@ -5,7 +5,7 @@ import requests
 import json
 import os
 
-URL = "http://172.16.227.150:1234/api/v1/file/"
+URL = "http://elbhttpupload-1440253491.ap-southeast-1.elb.amazonaws.com:80/api/v1/file/"
 
 def hash_md5(data):
     md5sum = hashlib.md5()

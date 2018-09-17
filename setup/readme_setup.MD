@@ -253,7 +253,7 @@ Resolving deltas: 100% (9/9), done.
   services.http-api-upload.port = "8080";
   services.http-api-upload.process = "4";
   services.http-api-upload.threads = "2";
-  services.http-api-upload.project_dir = "/project/http-api-upload";
+  services.http-api-upload.project-dir = "/project/http-api-upload";
   # End configuration app =============
 
 

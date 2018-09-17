@@ -1,15 +1,13 @@
-{ pkgs }:
+{ pkgs ? import <nixpkgs> {} }:
 
 rec {
 
   connector-c = pkgs.stdenv.mkDerivation rec {
 
     buildInputs = [ pkgs.libiconv ];
-
     cmakeFlags = [
       "-DWITH_EXTERNAL_ZLIB=ON"
       "-DMYSQL_UNIX_ADDR=/run/mysqld/mysqld.sock"];
-
     enableParallelBuilding = true;
     meta = with pkgs.stdenv.lib; {
       description = "Client library that can be used to connect to MySQL or MariaDB";
@@ -17,7 +15,6 @@ rec {
       maintainers = with maintainers; [ globin ];
       platforms = platforms.all;
     };
-
     name = "mariadb-connector-c-${version}";
     nativeBuildInputs = [ pkgs.cmake ];
     postFixup = ''
@@ -25,7 +22,6 @@ rec {
       ln -sv mariadb $out/lib/mysql
       ln -sv mariadb $out/include/mysql
     '';
-
     # The cmake setup-hook uses $out/lib by default, this is not the case here.
     preConfigure = pkgs.stdenv.lib.optionalString pkgs.stdenv.isDarwin ''
       cmakeFlagsArray+=("-DCMAKE_INSTALL_NAME_DIR=$out/lib/mariadb")
@@ -37,12 +33,10 @@ rec {
       url = "https://downloads.mariadb.org/interstitial/connector-c-${version}/mariadb-connector-c-${version}-src.tar.gz/from/http%3A//nyc2.mirrors.digitalocean.com/mariadb/";
     };
     version = "2.3.6";
-
   };
 
 
   django = pkgs.python27Packages.buildPythonPackage rec {
-
     doCheck = false;
     name = "Django-${version}";
     propagatedBuildInputs = [ pkgs.python27Packages.pytz ];
@@ -51,12 +45,10 @@ rec {
       url = "https://files.pythonhosted.org/packages/79/43/ed9ca4d69f35b5e64f2ecad73f75a8529a9c6f0d562e5af9a1f65beda355/Django-${version}.tar.gz";
     };
     version = "1.11";
-
   };
 
 
   django-docs = pkgs.python27Packages.buildPythonPackage rec {
-
     doCheck = false;
     name = "django-docs-${version}";
     propagatedBuildInputs = [ django ];
@@ -65,12 +57,10 @@ rec {
       url = "https://files.pythonhosted.org/packages/9b/cc/f8f2ff26217e97974f79ac188dbd75e7b194aba64244b9c44d60e38c8c05/django-docs-${version}.tar.gz";
     };
     version = "0.2.1";
-
   };
 
 
   django-filter = pkgs.python27Packages.buildPythonPackage rec {
-
     doCheck = false;
     name = "django-filter-${version}";
     src = pkgs.fetchurl{
@@ -78,11 +68,9 @@ rec {
       url = "https://files.pythonhosted.org/packages/db/12/491d519f5bee93709083c726b020ff9f09b95f32de36ae9023fbc89a21e4/django-filter-${version}.tar.gz";
     };
     version = "1.1.0";
-
   };
 
   djangorestframework = pkgs.python27Packages.buildPythonPackage rec {
-
     doCheck = false;
     name = "djangorestframework-${version}";
     src = pkgs.fetchurl{
@@ -90,13 +78,11 @@ rec {
       url = "https://files.pythonhosted.org/packages/c4/05/8106de162e94ad30fdd42b4f77dcb76c656fd3f51a9c01fdbbc307fd2447/djangorestframework-${version}.tar.gz";
     };
     version = "3.6.4";
-
   };
 
 
 
   MySQL-python = pkgs.python27Packages.buildPythonPackage rec {
-
     buildInputs = [ connector-c ];
     doCheck = false;
     name = "mysql-python-${version}";
@@ -105,13 +91,11 @@ rec {
       url = "https://files.pythonhosted.org/packages/a5/e9/51b544da85a36a68debe7a7091f068d802fc515a3a202652828c73453cad/mysql-python-${version}.zip";
     };
     version = "1.2.5";
-
   };
 
 
 
   requests = pkgs.python27Packages.buildPythonPackage rec {
-
     doCheck = false;
     name = "requests-${version}";
     propagatedBuildInputs = [
@@ -122,12 +106,10 @@ rec {
       sha256 = "9c443e7324ba5b85070c4a818ade28bfabedf16ea10206da1132edaa6dda237e";
     };
     version = "2.18.4";
-
   };
 
 
   SQLAlchemy = pkgs.python27Packages.buildPythonPackage rec {
-
     doCheck = false;
     name = "SQLAlchemy-${version}";
     src = pkgs.fetchurl{
@@ -135,11 +117,9 @@ rec {
       url = "https://files.pythonhosted.org/packages/da/ef/f10a6892f8ff3c1fec1c25699a7379d1f72f291c8fa40b71c31cab3f779e/SQLAlchemy-${version}.tar.gz";
     };
     version = "1.2.6";
-
   };
 
   uwsgi = pkgs.python27Packages.buildPythonPackage rec {
-
     doCheck = false;
     name = "uwsgi-${version}";
     src = pkgs.fetchurl{
@@ -147,7 +127,6 @@ rec {
       url = "https://files.pythonhosted.org/packages/98/b2/19b34b20662d111f7d2f926cdf10e13381761dd7dbd10666b9076cbdcd22/uwsgi-${version}.tar.gz";
     };
     version = "2.0.17";
-
   };
 
 

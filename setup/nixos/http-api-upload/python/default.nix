@@ -1,8 +1,11 @@
 { pkgs ? import <nixpkgs> {} }:
 
 let
+
   python27Library = pkgs.callPackage ./libraries.nix {};
+
 in
+
 pkgs.python27.withPackages (
   ps: [ 
         ps.pip 

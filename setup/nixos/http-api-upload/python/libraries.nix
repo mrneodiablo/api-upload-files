@@ -3,7 +3,6 @@
 rec {
 
   connector-c = pkgs.stdenv.mkDerivation rec {
-
     buildInputs = [ pkgs.libiconv ];
     cmakeFlags = [
       "-DWITH_EXTERNAL_ZLIB=ON"
@@ -28,13 +27,12 @@ rec {
     '';
     propagatedBuildInputs = [ pkgs.openssl pkgs.zlib ];
     src = pkgs.fetchurl {
-      name   = "mariadb-connector-c-${version}-src.tar.gz";
+      name = "mariadb-connector-c-${version}-src.tar.gz";
       sha256 = "15iy5iqp0njbwbn086x2dq8qnbkaci7ydvi84cf5z8fxvljis9vb";
       url = "https://downloads.mariadb.org/interstitial/connector-c-${version}/mariadb-connector-c-${version}-src.tar.gz/from/http%3A//nyc2.mirrors.digitalocean.com/mariadb/";
     };
     version = "2.3.6";
   };
-
 
   django = pkgs.python27Packages.buildPythonPackage rec {
     doCheck = false;
@@ -47,7 +45,6 @@ rec {
     version = "1.11";
   };
 
-
   django-docs = pkgs.python27Packages.buildPythonPackage rec {
     doCheck = false;
     name = "django-docs-${version}";
@@ -58,7 +55,6 @@ rec {
     };
     version = "0.2.1";
   };
-
 
   django-filter = pkgs.python27Packages.buildPythonPackage rec {
     doCheck = false;
@@ -80,8 +76,6 @@ rec {
     version = "3.6.4";
   };
 
-
-
   MySQL-python = pkgs.python27Packages.buildPythonPackage rec {
     buildInputs = [ connector-c ];
     doCheck = false;
@@ -92,8 +86,6 @@ rec {
     };
     version = "1.2.5";
   };
-
-
 
   requests = pkgs.python27Packages.buildPythonPackage rec {
     doCheck = false;
@@ -107,7 +99,6 @@ rec {
     };
     version = "2.18.4";
   };
-
 
   SQLAlchemy = pkgs.python27Packages.buildPythonPackage rec {
     doCheck = false;
@@ -128,7 +119,5 @@ rec {
     };
     version = "2.0.17";
   };
-
-
 
 }

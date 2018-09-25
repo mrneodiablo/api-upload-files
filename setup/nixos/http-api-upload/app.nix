@@ -105,7 +105,7 @@ in
         ExecStart = "${pkgs.python4app}/bin/uwsgi --http=0.0.0.0:${cfg.port} --module=main.wsgi:application --processes=${cfg.process}  --threads=${cfg.threads}  --master  --enable-threads  --logto=${cfg.project-dir}/logs/uwsgi_deamon.log --daemonize=${cfg.project-dir}/logs/uwsgi_deamon.log --pidfile=${cfg.project-dir}/run/uwsgi_web.pid";
         KillSignal = "SIGINT";
         PIDFile = "${cfg.project-dir}/run/uwsgi_web.pid";
-        Type = "simple";
+        Type = "forking";
       };
     };
   };

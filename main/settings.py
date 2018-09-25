@@ -24,7 +24,7 @@ if os.environ.get("APP_DATABASE_USER") == None:
     os.environ["APP_DATABASE_USER"] = "root"
 
 if os.environ.get("APP_DATABASE_PASS") == None:
-    os.environ["APP_DATABASE_PASS"] = "123456"
+    os.environ["APP_DATABASE_PASS"] = ""
 
 if os.environ.get("APP_DATABASE_HOST") == None:
     os.environ["APP_DATABASE_HOST"] = "127.0.0.1"

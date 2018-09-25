@@ -285,6 +285,8 @@ notice:
 
 and
 ```
+nixpkgs.overlays = [ (import /project/http-api-upload/setup/nixos/http-api-upload/python/) ];
+
  ## Config mysql
 services.mysql.enable = true;
 services.mysql.package = pkgs.mysql;

@@ -238,6 +238,7 @@ Resolving deltas: 100% (9/9), done.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configuration http-api-upload======
+  nixpkgs.overlays = [ (import /project/http-api-upload/setup/nixos/http-api-upload/python) ];
 
   ## Config mysql
   services.mysql.enable = true;
@@ -276,18 +277,18 @@ Resolving deltas: 100% (9/9), done.
 
 notice:
 ```
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      /project/http-api-upload/setup/nixos/http-api-upload/app.nix
-    ];
+imports =
+[ # Include the results of the hardware scan.
+  ./hardware-configuration.nix
+  /project/http-api-upload/setup/nixos/http-api-upload/app.nix
+];
 ```
 
 and
 ```
-nixpkgs.overlays = [ (import /project/http-api-upload/setup/nixos/http-api-upload/python/) ];
+nixpkgs.overlays = [ (import /project/http-api-upload/setup/nixos/http-api-upload/python) ];
 
- ## Config mysql
+## Config mysql
 services.mysql.enable = true;
 services.mysql.package = pkgs.mysql;
 services.mysql.dataDir = "/var/db";
@@ -301,7 +302,7 @@ services.http-api-upload.enable = true;
 services.http-api-upload.port = "8080";
 services.http-api-upload.process = "4";
 services.http-api-upload.threads = "2";
-services.http-api-upload.project_dir = "/project/http-api-upload";
+services.http-api-upload.project-dir = "/project/http-api-upload";
 # End configuration app =============
 ```
 
